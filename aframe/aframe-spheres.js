@@ -1,13 +1,13 @@
 var scene,t0;
-var N=1;
+var N=100;
 var colors=["#343838", "#005F6B", "#008C9E", "#00B4CC"];
-var minDist=1.1; var maxDist=2;
+var minDist=2; var maxDist=3;
 var minRadius=0.05; var maxRadius=0.2;
-var moveBalls=false;
+
 var minFreq=1./20; var maxFreq=1./10;
-var minDistOsc=0.2; var maxDistOsc=0.4;
+var minDistOsc=1; var maxDistOsc=3;
 
-
+var moveSpheres=false;
 function buildSpheres(N){
 	for (var i=0; i<N; i++){
 		
@@ -86,7 +86,10 @@ function moveSpheres(){
 }
 
 function setupScene(){
-	buildSpheres(N);
+	if(moveSpheres){		
+		buildMovingSpheres(N);
+		moveSpheres();
+	}else{buildSpheres(N);}
 
 }
 

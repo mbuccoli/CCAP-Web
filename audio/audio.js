@@ -5,8 +5,8 @@ var context, buffer;
 window.addEventListener('load', init, false);
 var fn='./sample.mp3';
 var playing=false;
-var analyzeAudio=false;
-var changeBackground=false;
+var analyzeAudio=true;
+var changeBackground=true;
 var source=null;
 var analyser, freqArray;
 function init() {
@@ -41,6 +41,7 @@ function assignBuffer(pBuffer) {
 
 
 function playSound(pBuffer=null) {
+  context.resume();
   if(source==null){
   	source = context.createBufferSource();
   	if(pBuffer==null){pBuffer=buffer;}
@@ -68,7 +69,7 @@ function playSound(pBuffer=null) {
 var minDB, maxDB, rangeDB;
 function buildAnalysis(){
 	analyser= context.createAnalyser();
- 	analyser.fftSize=1024;
+ 	analyser.fftSize=512;
  	freqArray=new Float32Array(analyser.fftSize/2);
 	minDB=analyser.minDecibels;
 	maxDB=analyser.maxDecibels;
